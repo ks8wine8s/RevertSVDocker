@@ -2,10 +2,12 @@ services:
   windows:
     image: dockurr/windows
     environment:
+      VESION: "10"
       DISK_SIZE: "64G"
       RAM_SIZE: "8G"
       CPU_CORES: "4"
       DISK_TYPE: "ide"
+      ARGUMENTS: "-drive file=/driver.iso,media=cdrom"
     devices:
       - /dev/kvm
     cap_add:
@@ -15,6 +17,6 @@ services:
       - 3389:3389/tcp
       - 3389:3389/udp
     volumes:
-      - /tmp:/storage
-      - /workspaces/codespaces-blank/revertsv.iso:/custom.iso
+      - /mnt:/storage
+      - /isos/driver.iso:/driver.iso
     stop_grace_period: 2m
